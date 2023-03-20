@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   ImageBackground,
-  Image,
   TextInput,
   Text,
   TouchableOpacity,
@@ -14,18 +13,18 @@ import {
   Dimensions,
 } from "react-native";
 
+
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 
 const InitialState = {
-  login: "",
   email: "",
   password: "",
 };
 
 SplashScreen.preventAutoHideAsync();
 
-const RegistrationScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation }) => {
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
   const [state, setState] = useState(InitialState);
   const [dimensions, setDimensions] = useState(
@@ -49,8 +48,8 @@ const RegistrationScreen = ({ navigation }) => {
   }, []);
 
   const [fontsLoaded] = useFonts({
-    "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-    "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Regular": require("../../assets/fonts/Roboto-Regular.ttf"),
+    "Roboto-Medium": require("../../assets/fonts/Roboto-Medium.ttf"),
   });
 
   const onFontsLoaded = useCallback(async () => {
@@ -67,36 +66,20 @@ const RegistrationScreen = ({ navigation }) => {
     <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={styles.container} onLayout={onFontsLoaded}>
         <ImageBackground
-          source={require("../assets/img/background-img.png")}
+          source={require("../../assets/img/background-img.png")}
           style={styles.image}
         >
-          <View style={styles.imageWrapper}>
-            <Image source={require("../assets/img/photoSpace.png")} />
-            <Image
-              style={styles.addIcon}
-              source={require("../assets/img/add.png")}
-            />
-          </View>
           <View style={styles.form}>
-            <Text style={styles.register}>Registration</Text>
+            <Text style={styles.register}>Login</Text>
             <KeyboardAvoidingView
               behavior={Platform.OS === "ios" ? "padding" : "height"}
             >
               <View
                 style={{
-                  marginBottom: isKeyboardShown ? 32 : 0,
+                  marginBottom: isKeyboardShown ? 22 : 0,
                   width: dimensions,
                 }}
               >
-                <TextInput
-                  placeholder="Enter your login"
-                  style={styles.input}
-                  onFocus={() => setIsKeyboardShown(true)}
-                  value={state.login}
-                  onChangeText={(value) =>
-                    setState((prevState) => ({ ...prevState, login: value }))
-                  }
-                />
                 <TextInput
                   placeholder="Enter your e-mail"
                   style={styles.input}
@@ -113,21 +96,28 @@ const RegistrationScreen = ({ navigation }) => {
                   onFocus={() => setIsKeyboardShown(true)}
                   value={state.password}
                   onChangeText={(value) =>
-                    setState((prevState) => ({ ...prevState, password: value }))
+                    setState((prevState) => ({
+                      ...prevState,
+                      password: value,
+                    }))
                   }
                 />
                 <TouchableOpacity
                   style={styles.button}
                   activeOpacity={0.8}
-                  onPress={() => keyboardHide()}
+                  onPress={() => {
+                    if (validateInput()) {
+                      keyboardHide();
+                    }
+                  }}
                 >
-                  <Text style={styles.buttonTitle}>Sign up</Text>
+                  <Text style={styles.buttonTitle}>Log in</Text>
                 </TouchableOpacity>
                 <Text
                   style={styles.signInText}
-                  onPress={() => navigation.navigate("Login")}
+                  onPress={() => navigation.navigate("Registration")}
                 >
-                  Already have an account? Log in
+                  Don't have an account? Sign up
                 </Text>
               </View>
             </KeyboardAvoidingView>
@@ -137,7 +127,7 @@ const RegistrationScreen = ({ navigation }) => {
     </TouchableWithoutFeedback>
   );
 };
-export default RegistrationScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -150,25 +140,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
-
-  imageWrapper: {
-    left: "-1%",
-    top: "10%",
-    zIndex: 999,
-    width: 120,
-    height: 120,
-    backgroundColor: "#F6F6F6",
-    borderRadius: 16,
-  },
-
-  addIcon: {
-    position: "absolute",
-    left: "90%",
-    top: "65%",
-    width: 25,
-    height: 25,
-  },
-
   input: {
     height: 50,
     padding: 16,
@@ -179,9 +150,10 @@ const styles = StyleSheet.create({
     // marginHorizontal: 16,
     color: "#212121",
   },
+
   register: {
     marginBottom: 32,
-    marginTop: 92,
+    marginTop: 32,
     fontFamily: "Roboto-Medium",
     fontSize: 30,
     lineHeight: 35,
