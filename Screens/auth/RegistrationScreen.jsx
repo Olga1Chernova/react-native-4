@@ -56,6 +56,7 @@ const RegistrationScreen = ({ navigation }) => {
     setState(InitialState);
   };
 
+
   useEffect(() => {
     const onChange = () => {
       const width = Dimensions.get("window").width - 16 * 2;
@@ -137,10 +138,10 @@ const RegistrationScreen = ({ navigation }) => {
                   style={styles.button}
                   activeOpacity={0.8}
                   onPress={() => {
-                    if (validateInput()) {
-                      keyboardHide();
-                    }
-                  }}
+                    keyboardHide();
+                    validateInput();
+                  navigation.navigate("Home");
+                }}
                 >
                   <Text style={styles.buttonTitle}>Sign up</Text>
                 </TouchableOpacity>

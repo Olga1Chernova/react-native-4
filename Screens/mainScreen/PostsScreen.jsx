@@ -17,13 +17,13 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 17,
     lineHeight: 22,
-    textAlign: "center",
     letterSpacing: -0.408,
     color: "#212121",
+    marginTop: 55,
   },
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+      alignItems: "center",
+      
   },
 });

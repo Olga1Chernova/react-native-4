@@ -38,6 +38,19 @@ const LoginScreen = ({ navigation }) => {
     setState(InitialState);
   };
 
+  const validateInput = () => {
+    if (!state.email.trim() || !state.email.includes("@")) {
+      alert("Please enter a valid email address");
+      return false;
+    }
+    if (state.password.trim().length < 6) {
+      alert("Please enter a password with at least 6 characters");
+      return false;
+    }
+    return true;
+  };
+
+
   useEffect(() => {
     const onChange = () => {
       const width = Dimensions.get("window").width - 16 * 2;
@@ -106,9 +119,9 @@ const LoginScreen = ({ navigation }) => {
                   style={styles.button}
                   activeOpacity={0.8}
                   onPress={() => {
-                    if (validateInput()) {
-                      keyboardHide();
-                    }
+                    keyboardHide();
+                    validateInput();
+                    navigation.navigate("Home");
                   }}
                 >
                   <Text style={styles.buttonTitle}>Log in</Text>
