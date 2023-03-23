@@ -1,14 +1,14 @@
 import { Text, StyleSheet, View } from "react-native";
 
-const ProfileScreen = () => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.posts}>Your Profile Page</Text>
-        </View>
-    )
+const MapScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.posts}>Map</Text>
+    </View>
+  );
 };
 
-export default ProfileScreen;
+export default MapScreen;
 
 const styles = StyleSheet.create({
   posts: {

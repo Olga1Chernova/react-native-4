@@ -1,14 +1,14 @@
 import { Text, StyleSheet, View } from "react-native";
 
-const ProfileScreen = () => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.posts}>Your Profile Page</Text>
-        </View>
-    )
+const CommentsScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.posts}>Comments</Text>
+    </View>
+  );
 };
 
-export default ProfileScreen;
+export default CommentsScreen;
 
 const styles = StyleSheet.create({
   posts: {
