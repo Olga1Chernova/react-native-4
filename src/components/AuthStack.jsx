@@ -7,27 +7,18 @@ import Home from "../../src/Screens/mainScreen/Home";
 const { Navigator, Screen } = createStackNavigator();
 
 const AuthStack = () => (
-  <Navigator headerShown={false}>
+  <Navigator screenOptions={{ headerShown: false }}>
     <Screen
       name="Registration"
       component={RegistrationScreen}
-      options={{
-        headerShown: false,
-      }}
     />
     <Screen
       name="Login"
       component={LoginScreen}
-      options={{
-        headerShown: false,
-      }}
     />
     <Screen
       name="Home"
       component={Home}
-      options={{
-        headerShown: false,
-      }}
     />
   </Navigator>
 );
