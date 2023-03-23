@@ -68,14 +68,14 @@ const RegistrationScreen = ({ navigation }) => {
     <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={styles.container}>
         <ImageBackground
-          source={require("../../assets/img/background-img.png")}
+          source={require("../../../assets/img/background-img.png")}
           style={styles.image}
         >
           <View style={styles.imageWrapper}>
-            <Image source={require("../../assets/img/photoSpace.png")} />
+            <Image source={require("../../../assets/img/photoSpace.png")} />
             <Image
               style={styles.addIcon}
-              source={require("../../assets/img/add.png")}
+              source={require("../../../assets/img/add.png")}
             />
           </View>
           <View style={styles.form}>
